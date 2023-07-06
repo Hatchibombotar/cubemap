@@ -1,8 +1,9 @@
-type CubemapOptions = {
-    width: number | string;
-    height: number | string;
+import "./index.css";
+export type CubemapOptions = {
+    width?: number | string;
+    height?: number | string;
     background_color?: string;
-    perspective?: number;
+    perspective?: number | string;
     min_pitch?: number | false;
     max_pitch?: number | false;
     rotate_type?: "drag" | "auto";
@@ -13,7 +14,7 @@ type StrictCubemapOptions = {
     width: number | string;
     height: number | string;
     background_color: string;
-    perspective: number;
+    perspective: number | string;
     min_pitch: number | false;
     max_pitch: number | false;
     rotate_type: "drag" | "auto";
@@ -24,7 +25,7 @@ export declare const defaultCubemapOptions: StrictCubemapOptions;
 export declare class Cubemap {
     pitch: number;
     yaw: number;
-    perspective: number;
+    perspective: number | string;
     box_size: number;
     border_margin: number;
     images: string[];
@@ -38,7 +39,7 @@ export declare class Cubemap {
         string,
         string,
         string
-    ], providedOptions: CubemapOptions);
+    ], providedOptions?: CubemapOptions);
     load(): void;
     update(): void;
 }

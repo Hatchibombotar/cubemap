@@ -1,8 +1,9 @@
-type CubemapOptions = {
-    width: number | string,
-    height: number | string,
+import "./index.css"
+export type CubemapOptions = {
+    width?: number | string,
+    height?: number | string,
     background_color?: string,
-    perspective?: number,
+    perspective?: number | string,
     min_pitch?: number | false,
     max_pitch?: number | false,
     
@@ -15,7 +16,7 @@ type StrictCubemapOptions = {
     width: number | string,
     height: number | string,
     background_color: string,
-    perspective: number,
+    perspective: number | string,
     min_pitch: number | false,
     max_pitch: number | false,
     
@@ -48,7 +49,7 @@ enum Directions {
 export class Cubemap {
     pitch: number
     yaw: number
-    perspective: number
+    perspective: number | string
 
     box_size: number
     border_margin: number
@@ -69,7 +70,7 @@ export class Cubemap {
             string,
             string
         ],
-        providedOptions: CubemapOptions
+        providedOptions: CubemapOptions = {}
     ) {
         const options: StrictCubemapOptions = {
             ...defaultCubemapOptions,
@@ -230,7 +231,11 @@ export class Cubemap {
         const perspective = this.perspective
         const distance = perspective
 
-        this.root.style.perspective = perspective.toFixed(0) + "px"
+        if (typeof perspective == "number") {
+            this.root.style.perspective = perspective.toFixed(0) + "px"
+        } else {
+            this.root.style.perspective = perspective
+        }
 
         const rect = this.root.getClientRects()[0]
         const offsetX = (rect.width - this.box_size) * 0.5

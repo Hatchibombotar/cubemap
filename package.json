@@ -1,14 +1,12 @@
 {
   "name": "@hatchibombotar/cubemap",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "lib/index.js",
+  "scripts": {},
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "hatchibombotar",
+  "license": "MIT",
   "devDependencies": {
     "typescript": "^5.1.6"
   }
