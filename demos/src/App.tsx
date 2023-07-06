@@ -49,7 +49,6 @@ const App: Component = () => {
         <span class="block my-1">Copyright (c) 2023 Hatchibombotar</span>
         <span class="block my-1">Package and website created by <a href={MAIN_SITE_URL}>Hatchibombotar</a>.</span>
         <span>Licenced under the <a href={MAIN_SITE_URL}>MIT License</a>.</span>
-        
       </footer>
     </div>
   );
