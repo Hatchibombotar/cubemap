@@ -24,6 +24,7 @@ is-buffer/index.js:
 */const du=`# @hatchibombotar/cubemap
 
 A simple and performant cubemap viewer, using the power of css transformations.
+Adapted from [tamats.com/blog/?p=381](https://www.tamats.com/blog/?p=381).
 
 ### Installation
 
