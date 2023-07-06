@@ -6,6 +6,9 @@
   "scripts": {
     "build": "npx tsc && npx copyfiles -u 1 src/**/*.css lib/"
   },
+  "repository": {
+    "url": "https://github.com/Hatchibombotar/cubemap"
+  },
   "keywords": [],
   "author": "hatchibombotar",
   "license": "MIT",
