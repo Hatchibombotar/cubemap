@@ -1,13 +1,16 @@
 {
   "name": "@hatchibombotar/cubemap",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "lib/index.js",
-  "scripts": {},
+  "scripts": {
+    "build": "npx tsc && npx copyfiles -u 1 src/**/*.css lib/"
+  },
   "keywords": [],
   "author": "hatchibombotar",
   "license": "MIT",
   "devDependencies": {
+    "copyfiles": "^2.4.1",
     "typescript": "^5.1.6"
   }
 }
