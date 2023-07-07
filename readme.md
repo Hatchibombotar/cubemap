@@ -12,6 +12,8 @@ npm i @hatchibombotar/cubemap
 ### Getting started
 
 ```js
+import { Cubemap } from "@hatchibombotar/cubemap"
+
 new Cubemap(
     container,
     [
