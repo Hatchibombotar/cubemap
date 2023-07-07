@@ -16,8 +16,5 @@
   "devDependencies": {
     "copyfiles": "^2.4.1",
     "typescript": "^5.1.6"
-  },
-  "browserslist": [
-    "iOS >= 12"
-  ]
+  }
 }
