@@ -15,3 +15,11 @@ code {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.prose {
+ @apply prose-code:before:hidden prose-code:after:hidden
+}
+
+.prose h1 {
+  line-break: anywhere;
+}

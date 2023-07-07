@@ -9,6 +9,7 @@ import Markdown from 'solid-markdown';
 import readme from "../../readme.md?raw"
 
 import { FaBrandsNpm, FaBrandsGithub } from 'solid-icons/fa'
+import { CgAsterisk, CgCheck } from 'solid-icons/cg'
 
 const NPM_URL = "https://www.npmjs.com/package/@hatchibombotar/cubemap"
 const GITHUB_URL = "https://github.com/Hatchibombotar/cubemap"
@@ -29,19 +30,28 @@ const App: Component = () => {
         </a>
       </header>
       <hr class="mb-5" />
-      <main class="mx-4">
-        <h2 class="text-gray-800 mb-2">readme.md</h2>
-        <Markdown class="prose max-w-2xl">
-          {readme}
-        </Markdown>
+      <main class="max-w-[100vw]">
+        <div class="mx-4">
+          <h2 class="text-gray-800 mb-2">readme.md</h2>
+          <Markdown class="prose">
+            {readme}
+          </Markdown>
+        </div>
+
+        <hr class="my-5" />
+        <div class="prose max-w-2xl mx-4">
+          <h2>browser compatibility</h2>
+        <Compatibility/>
+
+        </div>
         <hr class="my-5" />
 
-        <div class="prose max-w-2xl">
+        <div class="prose max-w-2xl mx-4">
           <h2 class="">examples</h2>
           <h3>rotate_type: "drag"</h3>
-          <CubemapExample options={{ "rotate_type": "drag", width: "42rem", height: "42rem" }} />
+          <CubemapExample options={{ "rotate_type": "drag", width: "auto", height: "42rem" }} />
           <h3>rotate_type: "auto"</h3>
-          <CubemapExample options={{ "rotate_type": "auto", width: "42rem", height: "42rem" }} />
+          <CubemapExample options={{ "rotate_type": "auto", width: "auto", height: "42rem" }} />
         </div>
       </main>
       <hr class="my-5" />
@@ -78,6 +88,37 @@ function CubemapExample({ options }: { options: CubemapOptions }) {
   )
 
   return <div ref={container}></div>
+}
+
+function Compatibility() {
+  return <div class="">
+    <table class=" text-left overflow-x-scroll">
+      <thead>
+        <tr>
+          <th class=""></th>
+          <th class="">Browser</th>
+          <th class="">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <CgCheck class="my-auto"/>
+          <td class="">Chrome/Edge</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <CgAsterisk/>
+          <td class="">iOS</td>
+          <td class="">Auto rotation does not work with iOS versions under 16.</td>
+        </tr>
+        <tr>
+          <CgAsterisk/>
+          <td class="">Firefox</td>
+          <td class="">"drag" rotation works fine, "auto" rotation is a <a href="https://github.com/Hatchibombotar/cubemap/issues/1"><span>bit choppy</span></a>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 }
 
 export default App;
