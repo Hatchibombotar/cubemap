@@ -46,6 +46,8 @@ enum Directions {
     BOTTOM,
 }
 
+type CubemapImageArray = [string, string, string, string, string, string]
+
 export class Cubemap {
     pitch: number
     yaw: number
@@ -54,7 +56,7 @@ export class Cubemap {
     box_size: number
     border_margin: number
 
-    images: string[]
+    images: CubemapImageArray | string
 
     root: HTMLDivElement
     center: HTMLDivElement
@@ -62,14 +64,7 @@ export class Cubemap {
 
     constructor(
         container: HTMLElement,
-        images: [
-            string,
-            string,
-            string,
-            string,
-            string,
-            string
-        ],
+        images: CubemapImageArray | string,
         providedOptions: CubemapOptions = {}
     ) {
         const options: StrictCubemapOptions = {
@@ -197,12 +192,24 @@ export class Cubemap {
             [Directions.BACK]: `translateZ(${halfsize}px) rotateY(-180deg)`,
         }
 
+        const stripIndices: { [key: number]: number } = {
+            [Directions.LEFT]: 0,
+            [Directions.FRONT]: 1,
+            [Directions.RIGHT]: 2,
+            [Directions.BACK]: 3,
+            [Directions.BOTTOM]: 4,
+            [Directions.TOP]: 5
+        }
+
+        const isSingleImage = typeof this.images === 'string'
+        const singleImageUrl = isSingleImage ? this.images : null
+
         for (const face of [
             Directions.FRONT, Directions.LEFT, Directions.RIGHT, Directions.TOP, Directions.BOTTOM, Directions.BACK
         ]) {
-            const url = this.images[face]
+            const url: string = isSingleImage ? singleImageUrl as string : this.images[face]
             const element = document.createElement("div")
-            element.className = "cubemapface " + face + "face"
+            element.className = "cubemapface " + Directions[face].toLowerCase() + "face"
             this.center.appendChild(element)
 
             const transform = transformations[face]
@@ -218,6 +225,11 @@ export class Cubemap {
             // create image
             const img = new Image()
             img.src = url
+            if (isSingleImage) {
+                img.style.objectFit = 'cover'
+                const percentageShift = (stripIndices[face] / 5) * 100
+                img.style.objectPosition = `${percentageShift}% 0%`
+            }
             img.onload = () => {
                 img.width = this.box_size
                 img.height = this.box_size
