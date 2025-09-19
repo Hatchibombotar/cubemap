@@ -229,7 +229,6 @@ export class Cubemap {
 
     update() {
         const perspective = this.perspective
-        const distance = perspective
 
         if (typeof perspective == "number") {
             this.root.style.perspective = perspective.toFixed(0) + "px"
@@ -242,12 +241,11 @@ export class Cubemap {
         const offsetY = (rect.height - this.box_size) * 0.5
 
         if (this.options.rotate_type == "drag") {
-            this.center.style.transform = "translateZ(" + distance + "px) rotateX(" + this.pitch.toFixed(1) + "deg) rotateY(" + this.yaw.toFixed(1) + "deg) translateX(" + offsetX + "px) translateY(" + offsetY + "px)"
+            this.center.style.transform = "translateZ(" + this.root.style.perspective + ") rotateX(" + this.pitch.toFixed(1) + "deg) rotateY(" + this.yaw.toFixed(1) + "deg) translateX(" + offsetX + "px) translateY(" + offsetY + "px)"
         } else if (this.options.rotate_type == "auto") {
-            this.center.style.setProperty('--offset-z', distance + "px");
+            this.center.style.setProperty('--offset-z', this.root.style.perspective);
             this.center.style.setProperty('--offset-x', offsetX + "px");
             this.center.style.setProperty('--offset-y', offsetY.toFixed(1) + "px");
-            // this.center.style.transform = "translateZ(" + distance + "px) translateX(" + offsetX + "px) translateY(" + offsetY + "px)"
         }
     }
 }
