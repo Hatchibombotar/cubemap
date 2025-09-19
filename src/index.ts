@@ -46,6 +46,8 @@ enum Directions {
     BOTTOM,
 }
 
+type CubemapImageArray = [string, string, string, string, string, string]
+
 export class Cubemap {
     pitch: number
     yaw: number
@@ -54,7 +56,7 @@ export class Cubemap {
     box_size: number
     border_margin: number
 
-    images: string[] | string
+    images: CubemapImageArray | string
 
     root: HTMLDivElement
     center: HTMLDivElement
@@ -62,7 +64,7 @@ export class Cubemap {
 
     constructor(
         container: HTMLElement,
-        images: string[] | string,
+        images: CubemapImageArray | string,
         providedOptions: CubemapOptions = {}
     ) {
         const options: StrictCubemapOptions = {
