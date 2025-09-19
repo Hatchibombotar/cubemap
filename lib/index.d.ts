@@ -22,24 +22,18 @@ type StrictCubemapOptions = {
     rotate_speed: number;
 };
 export declare const defaultCubemapOptions: StrictCubemapOptions;
+type CubemapImageArray = [string, string, string, string, string, string];
 export declare class Cubemap {
     pitch: number;
     yaw: number;
     perspective: number | string;
     box_size: number;
     border_margin: number;
-    images: string[];
+    images: CubemapImageArray | string;
     root: HTMLDivElement;
     center: HTMLDivElement;
     options: StrictCubemapOptions;
-    constructor(container: HTMLElement, images: [
-        string,
-        string,
-        string,
-        string,
-        string,
-        string
-    ], providedOptions?: CubemapOptions);
+    constructor(container: HTMLElement, images: CubemapImageArray | string, providedOptions?: CubemapOptions);
     load(): void;
     update(): void;
 }
